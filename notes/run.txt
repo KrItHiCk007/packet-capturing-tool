@@ -7,3 +7,9 @@ python script.py
 #after running the python file 
 #open the link which has been displayed in the cmd or terimal
 ex :http://127.0.0.1.:5000
+#username = admin
+#password = admin
+#make sure to rename the interface accoriding to your os 
+#to see your interface name type 
+ipconfig in win
+ifconfig in linux
