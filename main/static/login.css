@@ -1,0 +1,83 @@
+/* login.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #121212; /* Dark background */
+    color: #ffffff; /* Light text color */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+}
+
+.login-container {
+    background-color: #1e1e1e; /* Container background */
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    padding: 40px;
+    width: 300px; /* Fixed width for the container */
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #ffffff; /* White heading */
+}
+
+.input-group {
+    margin-bottom: 20px; /* Spacing between input groups */
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #ffffff; /* White labels */
+}
+
+input {
+    width: 100%; /* Full width for input */
+    padding: 10px;
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    background-color: #333333; /* Dark background for input */
+    color: #ffffff; /* White text */
+    font-size: 16px; /* Font size */
+}
+
+input:focus {
+    outline: none; /* Remove focus outline */
+    background-color: #444444; /* Slightly lighter on focus */
+}
+
+.login-button {
+    background-color: #4CAF50; /* Green button */
+    color: white; /* White text */
+    border: none; /* Remove border */
+    padding: 10px;
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer on hover */
+    font-size: 16px; /* Font size */
+    width: 100%; /* Full width */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.login-button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+.footer {
+    margin-top: 20px; /* Space above footer */
+    color: #ffffff; /* White text for footer */
+}
+
+.link {
+    color: #4CAF50; /* Green link */
+    text-decoration: none; /* Remove underline */
+}
+
+.link:hover {
+    text-decoration: underline; /* Underline on hover */
+}

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Packet Capture</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>Packet Capture Interface</h2>
+    
+    <label for="interface">Select Network Interface:</label>
+    <select id="interface" name="interface">
+        <option value="lo">Loopback (lo)</option>
+        <option value="wlp2s0">Wi-Fi (wlp2s0)</option>
+        <option value="both">Both (lo and wlp2s0)</option>
+    </select>
+
+    <button onclick="startCapture()">Start Capture</button>
+    <button onclick="stopCapture()">Stop Capture</button>
+
+    <h3>Captured Packets:</h3>
+    <table id="packets-table">
+        <thead>
+            <tr>
+                <th>Timestamp</th>
+                <th>Source IP</th>
+                <th>Destination IP</th>
+                <th>Source MAC</th>
+                <th>Destination MAC</th>
+                <th>Source Port</th>
+                <th>Destination Port</th>
+                <th>Protocol</th>
+                <th>Length</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody id="packets"></tbody>
+    </table>
+
+    <script>
+        let updateInterval;
+
+        function startCapture() {
+            const selectedInterface = document.getElementById("interface").value;
+            fetch('/start_capture', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ interfaces: selectedInterface })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const packetDisplay = document.getElementById('packets');
+                packetDisplay.innerHTML = '';  // Clear previous packets
+                data.forEach(packet => {
+                    packetDisplay.innerHTML += createPacketRow(packet);
+                });
+                startFetchingPackets(); // Start fetching new packets
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function stopCapture() {
+            fetch('/stop_capture', {
+                method: 'POST'
+            })
+            .then(response => response.text())
+            .then(message => {
+                console.log(message);  // Capture stopped message
+                clearInterval(updateInterval); // Stop fetching new packets
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function startFetchingPackets() {
+            clearInterval(updateInterval); // Clear any existing intervals
+            updateInterval = setInterval(() => {
+                fetch('/get_packets')
+                .then(response => response.json())
+                .then(data => {
+                    const packetDisplay = document.getElementById('packets');
+                    packetDisplay.innerHTML = '';  // Clear previous packets
+                    data.forEach(packet => {
+                        packetDisplay.innerHTML += createPacketRow(packet);
+                    });
+                })
+                .catch(error => console.error('Error fetching packets:', error));
+            }, 3000); // Fetch new packets every 3 seconds
+        }
+
+        function createPacketRow(packet) {
+            return `
+                <tr>
+                    <td>${packet.timestamp}</td>
+                    <td>${packet.source_ip}</td>
+                    <td>${packet.dest_ip}</td>
+                    <td>${packet.source_mac}</td>
+                    <td>${packet.dest_mac}</td>
+                    <td>${packet.source_port}</td>
+                    <td>${packet.dest_port}</td>
+                    <td>${packet.protocol}</td>
+                    <td>${packet.length}</td>
+                    <td>${packet.details}</td>
+                </tr>
+            `;
+        }
+    </script>
+</body>
+</html>

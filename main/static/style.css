@@ -1,0 +1,70 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: black;
+    color: white;
+    margin: 0;
+    padding: 20px;
+}
+
+h2, h3 {
+    color: #ffffff;
+}
+
+label {
+    font-weight: bold;
+    color: #ffffff;
+}
+
+select {
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: #333;
+    color: white;
+}
+
+button {
+    padding: 10px 15px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+button:hover {
+    background-color: #e0e0e0;
+    color: black;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #555;
+    text-align: left;
+}
+
+th {
+    background-color: #444;
+    color: white;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #222;
+}
+
+tbody tr:hover {
+    background-color: #555;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
