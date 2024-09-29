@@ -1,0 +1,12 @@
+run each command in cmd 
+
+verify that your sysytem contain python or not
+To verify that open cmd and type
+   python --version (or) python -v
+if the python installled in your device it will show the help commands in cmd
+otherwise it show no command named python
+
+install python using youtube channel
+after installing python run this command in cmd
+pip install flask
+pip install scapy
