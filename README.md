@@ -8,7 +8,6 @@ The captured packet data is displayed on a web-based dashboard using user-friend
 This tool is providing lightweight,web-based solution for capturing and analying packet from the lo(loopback) and wlan0(wireless) interfaces.It offers a more accessible , beginner-friendly way to monitore network traffic.
 
 SOFTWARE USED:
-Linux ,mac and windows(possible with configuration)
 python version 3.x
 Requried Libraries : Flask,Scapy,Json
 web browser
